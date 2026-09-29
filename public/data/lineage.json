@@ -1,0 +1,275 @@
+{
+  "app": "SAP BDC Supply Chain 360",
+  "database": "SAP_SUPPLY_CHAIN",
+  "sourceSystems": [
+    "SAP S/4HANA Manufacturing (PP) & Logistics (MM / LE)",
+    "SAP S/4HANA Project System (PS)",
+    "SAP S/4HANA Engineering Change Management"
+  ],
+  "summary": "Supply chain master and transactional data is modelled on the SAP BDC Standard Data Products for S/4HANA (Plant, Work Center, Bill of Material, Production Order Confirmation, Project, Shipping Point, Storage Location, Change Master/Record, \u2026). Each product lands as an A_* object in its own domain schema of SAP_SUPPLY_CHAIN (L0), is curated into dynamic tables and a semantic view in ANALYTICS (L2), and is served to this app through APP_REF views (L1) and to the SAP Supply Chain 360 Analyst agent. A supply chain ontology / knowledge graph sits on top.",
+  "products": [
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Plant (sap-s4com-Plant-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PLANT.A_PLANT",
+      "l1Object": "APP_REF.A_PLANT",
+      "rows": 5,
+      "usage": "Plant master, filters & map"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Work Center (sap-s4com-WorkCenter-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.WORK_CENTER.A_WORK_CENTER",
+      "l1Object": "ANALYTICS.DT_WORK_CENTER_UTILIZATION",
+      "rows": 15,
+      "usage": "Work center master"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Work Center (sap-s4com-WorkCenter-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.WORK_CENTER.A_WORK_CENTER_CAPACITY",
+      "l1Object": "ANALYTICS.DT_WORK_CENTER_UTILIZATION",
+      "rows": 90,
+      "usage": "Capacity & utilization"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Production Order Confirmation (sap-s4com-ProductionOrderConfirmation-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PRODUCTION_ORDER_CONFIRM.A_PROD_ORD_CONFIRMATION",
+      "l1Object": "ANALYTICS.DT_PRODUCTION_ORDER_360",
+      "rows": 20,
+      "usage": "Production orders, yield & scrap"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Production Version (sap-s4com-ProductionVersion-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PRODUCTION_VERSION.A_PRODUCTION_VERSION",
+      "l1Object": "\u2014",
+      "rows": 8,
+      "usage": "Production version reference"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Bill Of Material (sap-s4com-BillOfMaterial-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.BILL_OF_MATERIAL.A_BOM_ITEM",
+      "l1Object": "ANALYTICS.DT_BOM_EXPLOSION",
+      "rows": 30,
+      "usage": "BOM explosion & component cost"
+    },
+    {
+      "sapSystem": "S/4HANA Manufacturing",
+      "dataProduct": "Bill Of Material Group (sap-s4pce-BillOfMaterialGroup-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.BOM_GROUP.A_BOM_GROUP",
+      "l1Object": "ANALYTICS.DT_BOM_EXPLOSION",
+      "rows": 5,
+      "usage": "BOM group headers"
+    },
+    {
+      "sapSystem": "S/4HANA Sales",
+      "dataProduct": "Sales Bill Of Material (sap-s4com-SalesBillOfMaterial-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.SALES_BOM.A_SALES_BOM",
+      "l1Object": "\u2014",
+      "rows": 9,
+      "usage": "Sales BOM reference"
+    },
+    {
+      "sapSystem": "S/4HANA Logistics",
+      "dataProduct": "Delivery Mgmt Configuration Data (sap-s4com-DeliveryMgmtConfigurationData-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.DELIVERY_MGMT_CONFIG.A_DELIVERY",
+      "l1Object": "ANALYTICS.DT_DELIVERY_PERFORMANCE",
+      "rows": 25,
+      "usage": "Outbound deliveries & on-time"
+    },
+    {
+      "sapSystem": "S/4HANA Logistics",
+      "dataProduct": "Shipping Point (sap-s4com-ShippingPoint-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.SHIPPING_POINT.A_SHIPPING_POINT",
+      "l1Object": "ANALYTICS.DT_DELIVERY_PERFORMANCE",
+      "rows": 6,
+      "usage": "Shipping point master"
+    },
+    {
+      "sapSystem": "S/4HANA Logistics",
+      "dataProduct": "Storage Location (sap-s4com-StorageLocation-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.STORAGE_LOCATION.A_STORAGE_LOCATION",
+      "l1Object": "ANALYTICS.DT_INVENTORY_OVERVIEW",
+      "rows": 13,
+      "usage": "Storage location master"
+    },
+    {
+      "sapSystem": "S/4HANA Project System",
+      "dataProduct": "Project (sap-s4pce-Project-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PROJECT.A_PROJECT",
+      "l1Object": "ANALYTICS.DT_PROJECT_STATUS",
+      "rows": 8,
+      "usage": "Project master & budget"
+    },
+    {
+      "sapSystem": "S/4HANA Project System",
+      "dataProduct": "Project Configuration Data (sap-s4pce-ProjectConfigurationData-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PROJECT_CONFIG_DATA.A_PROJECT_CONFIG",
+      "l1Object": "\u2014",
+      "rows": 6,
+      "usage": "Project configuration"
+    },
+    {
+      "sapSystem": "S/4HANA Project System",
+      "dataProduct": "Project Network (sap-s4pce-ProjectNetwork-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.PROJECT_NETWORK.A_PROJECT_WBS",
+      "l1Object": "ANALYTICS.DT_PROJECT_STATUS",
+      "rows": 18,
+      "usage": "WBS elements & completion"
+    },
+    {
+      "sapSystem": "S/4HANA Engineering",
+      "dataProduct": "Change Master (sap-s4com-ChangeMaster-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.CHANGE_MASTER.A_CHANGE_MASTER",
+      "l1Object": "\u2014",
+      "rows": 4,
+      "usage": "Engineering change master"
+    },
+    {
+      "sapSystem": "S/4HANA Engineering",
+      "dataProduct": "Change Record (sap-s4pce-ChangeRecord-v1)",
+      "l0Object": "SAP_SUPPLY_CHAIN.CHANGE_RECORD.A_CHANGE_RECORD",
+      "l1Object": "\u2014",
+      "rows": 4,
+      "usage": "Engineering change records"
+    },
+    {
+      "sapSystem": "Demo extension",
+      "dataProduct": "\u2014 (no BDC standard product; modelled)",
+      "l0Object": "SAP_SUPPLY_CHAIN.MANUFACTURING_CODES.A_MANUFACTURING_KPI",
+      "l1Object": "ANALYTICS.DT_MANUFACTURING_KPI",
+      "rows": 45,
+      "usage": "OEE, throughput, scrap KPIs"
+    },
+    {
+      "sapSystem": "Demo extension",
+      "dataProduct": "\u2014 (no BDC standard product; modelled)",
+      "l0Object": "SAP_SUPPLY_CHAIN.MANUFACTURING_CODES.A_MATERIAL_STOCK",
+      "l1Object": "ANALYTICS.DT_INVENTORY_OVERVIEW",
+      "rows": 23,
+      "usage": "Stock positions"
+    },
+    {
+      "sapSystem": "Demo extension",
+      "dataProduct": "\u2014 (no BDC standard product; modelled)",
+      "l0Object": "SAP_SUPPLY_CHAIN.MANUFACTURING_CODES.A_SUPPLIER_QUALITY",
+      "l1Object": "ANALYTICS.DT_SUPPLIER_QUALITY",
+      "rows": 18,
+      "usage": "Supplier quality scores"
+    },
+    {
+      "sapSystem": "Demo extension",
+      "dataProduct": "\u2014 (no BDC standard product; modelled)",
+      "l0Object": "SAP_SUPPLY_CHAIN.MANUFACTURING_CODES.A_SUPPLY_CHAIN_FLOWS",
+      "l1Object": "ANALYTICS.DT_SUPPLY_CHAIN_GEO",
+      "rows": 27,
+      "usage": "Material flows (map)"
+    },
+    {
+      "sapSystem": "Demo extension",
+      "dataProduct": "\u2014 (no BDC standard product; modelled)",
+      "l0Object": "SAP_SUPPLY_CHAIN.MANUFACTURING_CODES.A_SUPPLY_CHAIN_NODES",
+      "l1Object": "APP_REF.A_SUPPLY_CHAIN_NODES",
+      "rows": 19,
+      "usage": "Supply chain nodes (map)"
+    }
+  ],
+  "curated": [
+    {
+      "object": "ANALYTICS.DT_PRODUCTION_ORDER_360",
+      "rows": 20
+    },
+    {
+      "object": "ANALYTICS.DT_MANUFACTURING_KPI",
+      "rows": 45
+    },
+    {
+      "object": "ANALYTICS.DT_BOM_EXPLOSION",
+      "rows": 30
+    },
+    {
+      "object": "ANALYTICS.DT_INVENTORY_OVERVIEW",
+      "rows": 23
+    },
+    {
+      "object": "ANALYTICS.DT_DELIVERY_PERFORMANCE",
+      "rows": 25
+    },
+    {
+      "object": "ANALYTICS.DT_WORK_CENTER_UTILIZATION",
+      "rows": 90
+    },
+    {
+      "object": "ANALYTICS.DT_PROJECT_STATUS",
+      "rows": 18
+    },
+    {
+      "object": "ANALYTICS.DT_SUPPLIER_QUALITY",
+      "rows": 18
+    },
+    {
+      "object": "ANALYTICS.DT_SUPPLY_CHAIN_GEO",
+      "rows": 27
+    }
+  ],
+  "layers": [
+    {
+      "name": "SAP Source Systems",
+      "tone": "sap",
+      "objects": [
+        "SAP S/4HANA Manufacturing (PP)",
+        "SAP S/4HANA Logistics (MM / LE)",
+        "SAP S/4HANA Project System (PS)",
+        "SAP Engineering Change Mgmt"
+      ]
+    },
+    {
+      "name": "L0 \u2014 Bronze (BDC-shaped data products)",
+      "tone": "bronze",
+      "objects": [
+        "PLANT.A_PLANT",
+        "WORK_CENTER.A_WORK_CENTER(_CAPACITY)",
+        "BILL_OF_MATERIAL.A_BOM_ITEM",
+        "PRODUCTION_ORDER_CONFIRM.A_PROD_ORD_CONFIRMATION",
+        "PROJECT_NETWORK.A_PROJECT_WBS",
+        "MANUFACTURING_CODES.A_*",
+        "+11 more"
+      ]
+    },
+    {
+      "name": "L1 \u2014 Silver (APP_REF serving views)",
+      "tone": "silver",
+      "objects": [
+        "APP_REF.DT_* (9 serving views)",
+        "APP_REF.A_PLANT",
+        "APP_REF.A_SUPPLY_CHAIN_NODES"
+      ]
+    },
+    {
+      "name": "L2 \u2014 Gold (Dynamic Tables + Semantic View)",
+      "tone": "gold",
+      "objects": [
+        "ANALYTICS.DT_PRODUCTION_ORDER_360",
+        "ANALYTICS.DT_MANUFACTURING_KPI",
+        "ANALYTICS.DT_BOM_EXPLOSION",
+        "ANALYTICS.DT_INVENTORY_OVERVIEW",
+        "ANALYTICS.DT_DELIVERY_PERFORMANCE",
+        "+4 more DT_*",
+        "ANALYTICS.SAP_SUPPLY_CHAIN_360 (Semantic View)"
+      ]
+    },
+    {
+      "name": "AI + Application",
+      "tone": "ai",
+      "objects": [
+        "ANALYTICS.SAP_SC360_ANALYST_AGENT (Cortex Agent)",
+        "ONTOLOGY schema \u2014 knowledge graph (see Supply Chain Ontology page)",
+        "SAP BDC Supply Chain 360 (React)"
+      ]
+    }
+  ],
+  "note": "Honesty note: the L0 objects are modelled BDC-shaped native tables in SAP_SUPPLY_CHAIN that follow the SAP BDC Standard Data Product structures \u2014 they are not mounted BDC zero-copy shares in this account. The MANUFACTURING_CODES objects (KPIs, stock, supplier quality, flows, nodes) have no BDC standard product and are demo enrichment. There is no separate SAP_BDC_L1 passthrough layer; APP_REF serving views play the L1 role."
+}

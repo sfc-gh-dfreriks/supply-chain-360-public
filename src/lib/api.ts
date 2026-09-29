@@ -82,8 +82,8 @@ export function fetchSupplyChainMap(plants: string[]): Promise<any> {
   return getKeyed<any>('/geography', 'geography', plants);
 }
 
-export function fetchBdcProducts(): Promise<any> {
-  return getSingle<any>('/data-products', 'data-products');
+export function fetchLineage(): Promise<any> {
+  return getSingle<any>('/lineage', 'lineage');
 }
 
 export function fetchOntology(): Promise<any> {
