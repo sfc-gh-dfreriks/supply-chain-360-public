@@ -20,6 +20,15 @@ separate serverless Cortex agent when configured.
   POSTs to `<AGENT_URL>/analyst`. If unset, the Analyst page shows a "not available"
   notice but the dashboards work fully.
 
+- **Operations pages:** Order Fulfillment, Equipment Health and Components are
+  snapshotted like the rest. Their data is the OPS_EXT demo enrichment —
+  representative, not customer data.
+- **Ask Cortex:** the default answer for every topic (plus each plant's
+  constraint, the listed late orders and the first serial) is baked into
+  `public/data/ask_cortex.json` by the exporter. Free-text questions go to
+  `<AGENT_URL>/ask-cortex` when `AGENT_URL` is set, otherwise the panel says the
+  live app is needed.
+
 ## Local build
 
 ```bash

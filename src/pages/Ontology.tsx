@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
-import ReactECharts from 'echarts-for-react';
+import ReactECharts from '@/components/Chart';
 import { useQuery } from '@/hooks/useQuery';
 import { fetchOntology } from '@/lib/api';
 import MetricCard, { Factory, CheckCircle2, Timer, TrendingUp } from '@/components/MetricCard';
