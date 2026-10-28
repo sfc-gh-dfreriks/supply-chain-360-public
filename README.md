@@ -2,8 +2,8 @@
 
 A static, no-login public build of the SAP BDC Supply Chain 360 dashboard, deployed to
 GitHub Pages. Dashboards render from a **point-in-time data snapshot** (no Snowflake
-connection, no credentials in the browser). The optional "Ask the Agent" page calls a
-separate serverless Cortex agent when configured.
+connection, no credentials in the browser). Free-text Ask Cortex questions call a
+separate serverless Cortex agent when configured. The app opens on the Executive Dashboard.
 
 ## How it works
 
@@ -16,8 +16,8 @@ separate serverless Cortex agent when configured.
   EXPORT_BASE=http://localhost:3001 node scripts/export-static.mjs
   ```
 - **Live agent (optional):** set the repo variable `AGENT_URL` to a deployed Cortex
-  agent Worker URL. The build injects it as `VITE_AGENT_URL`; the Analyst page then
-  POSTs to `<AGENT_URL>/analyst`. If unset, the Analyst page shows a "not available"
+  agent Worker URL. The build injects it as `VITE_AGENT_URL`; free-text Ask Cortex
+  questions then POST to `<AGENT_URL>/ask-cortex`. If unset, they show a "not available"
   notice but the dashboards work fully.
 
 - **Operations pages:** Order Fulfillment, Equipment Health and Components are
